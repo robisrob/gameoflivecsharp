@@ -9,7 +9,7 @@
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
     <PackageReference Include="FluentAssertions" Version="4.19.2" />
-    <ProjectReference Include="..\GameOfLife\GameOfLife.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
