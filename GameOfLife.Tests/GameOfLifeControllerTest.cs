@@ -1,15 +1,13 @@
 using Xunit;
-using System;
-using GameOfLife;
 using System.Collections.Generic;
 using FluentAssertions;
 
-namespace GameOfLife.Tests
+namespace GameOfLife
 {
-    public class UnitTest1
+    public class GameOfLifeControllerTest
     {
         [Fact]
-        public void GameOfLifeControllerTest()
+        public void GivenWorld_WhenGetWorld_NewGenerationIsReturned()
         {
             var newWorld = new GameOfLifeController().GetWorld(
                 new List<List<bool>>

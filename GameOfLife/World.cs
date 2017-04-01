@@ -4,7 +4,6 @@ namespace GameOfLife
 {
     public class World
     {
-
         private List<List<Cel>> _cells;
 
         public World(List<List<Cel>> cells)

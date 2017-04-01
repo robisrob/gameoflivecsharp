@@ -1,6 +1,5 @@
 using Xunit;
 using FluentAssertions;
-using GameOfLife;
 using System;
 
 namespace GameOfLife
