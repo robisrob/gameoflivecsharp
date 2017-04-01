@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace GameOfLife.Domain
 {
-    internal class World
+    public class World
     {
         private List<List<Cel>> _cells;
 

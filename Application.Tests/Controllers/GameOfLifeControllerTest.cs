@@ -2,7 +2,7 @@ using Xunit;
 using System.Collections.Generic;
 using FluentAssertions;
 
-namespace GameOfLife.Application
+namespace Application.Controllers
 {
     public class GameOfLifeControllerTest
     {
