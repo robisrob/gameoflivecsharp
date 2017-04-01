@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GameOfLife.Domain;
 
-namespace GameOfLife
+namespace GameOfLife.Application
 {
     public class GameOfLifeController
     {

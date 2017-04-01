@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace GameOfLife
+namespace GameOfLife.Domain
 {
-    public class World
+    internal class World
     {
         private List<List<Cel>> _cells;
 
@@ -19,7 +19,7 @@ namespace GameOfLife
                 var newRow = new List<Cel>();
                 for (int column = 0; column < _cells[row].Count; column++)
                 {
-                    newRow.Add(new CelDeterminator().DetermineNextStatus(_cells[row][column], new NeighbourHoodFactory(_cells).create(new Location(row, column)).GetAmountOfLivingNeigbours()));
+                    newRow.Add(new CelDeterminator().DetermineNextStatus(_cells[row][column], new NeighbourHoodFactory(_cells).Create(new Location(row, column)).GetAmountOfLivingNeigbours()));
                 }
                 newCells.Add(newRow);
             }

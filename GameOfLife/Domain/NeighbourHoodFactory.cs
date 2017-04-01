@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameOfLife
+namespace GameOfLife.Domain
 {
     public class NeighbourHoodFactory
     {
-
         private readonly List<List<Cel>> currentWorld;
 
         public NeighbourHoodFactory(List<List<Cel>> currentWorld)
@@ -13,7 +12,7 @@ namespace GameOfLife
             this.currentWorld = currentWorld;
         }
 
-        public Neighbourhood create(Location location)
+        public Neighbourhood Create(Location location)
         {
             return new Neighbourhood((int)GetNeighbours(location).Where(neighbor => neighbor == Cel.Alive).Count());
         }

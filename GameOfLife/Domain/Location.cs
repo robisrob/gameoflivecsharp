@@ -1,4 +1,4 @@
-namespace GameOfLife
+namespace GameOfLife.Domain
 {
     public class Location
     {

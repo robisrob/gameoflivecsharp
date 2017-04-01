@@ -2,7 +2,7 @@ using Xunit;
 using FluentAssertions;
 using System;
 
-namespace GameOfLife
+namespace GameOfLife.Domain
 {
 public class CelDeterminatorTest {
 
