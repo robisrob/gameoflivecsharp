@@ -1,6 +1,6 @@
 namespace GameOfLife.Domain.NeighbourHood
 {
-    public partial class Neighbourhood
+    internal partial class Neighbourhood
     {
         private class OverPopulationRule : IRule
         {

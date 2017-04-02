@@ -4,7 +4,7 @@ using System;
 
 namespace GameOfLife.Domain.NeighbourHood
 {
-    public partial class Neighbourhood
+    internal partial class Neighbourhood
     {
         private readonly IEnumerable<IRule> rules;
 

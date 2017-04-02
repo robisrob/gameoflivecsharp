@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace GameOfLife.Domain.NeighbourHood
 {
-    public class NeighbourHoodFactory
+    internal class NeighbourHoodFactory
     {
         private readonly List<List<Cel>> currentWorld;
 

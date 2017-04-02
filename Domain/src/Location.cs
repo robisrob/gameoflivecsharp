@@ -1,6 +1,6 @@
 namespace GameOfLife.Domain
 {
-    public class Location
+    internal class Location
     {
         private readonly int rowNummer;
         private readonly int columnNummer;
