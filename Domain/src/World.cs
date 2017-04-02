@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using GameOfLife.Domain.NeighbourHood;
+using System.Linq;
 
 namespace GameOfLife.Domain
 {
@@ -13,18 +14,16 @@ namespace GameOfLife.Domain
         }
         public void Tick()
         {
-            var newCells = new List<List<Cel>>();
+            _cells = _cells.Select((cellRow, rowNumber) => DetermineNextGeneration(cellRow, rowNumber)).ToList();
+        }
 
-            for (int row = 0; row < _cells.Count; row++)
-            {
-                var newRow = new List<Cel>();
-                for (int column = 0; column < _cells[row].Count; column++)
-                {
-                    newRow.Add(new NeighbourHoodFactory(_cells).Create(new Location(row, column)).DetermineNextStatus(_cells[row][column]));
-                }
-                newCells.Add(newRow);
-            }
-            _cells = newCells;
+        private List<Cel> DetermineNextGeneration(List<Cel> cellRow, int rowNumber)
+        {
+            return cellRow
+            .Select((cell, columnNumber) => new NeighbourHoodFactory(_cells)
+            .Create(new Location(rowNumber, columnNumber))
+            .DetermineNextStatus(cell))
+            .ToList();
         }
 
         public List<List<Cel>> Cells
