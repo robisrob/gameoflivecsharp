@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameOfLife.Domain
+namespace GameOfLife.Domain.NeighbourHood
 {
     public class NeighbourHoodFactory
     {

@@ -2,7 +2,7 @@ using Xunit;
 using System.Collections.Generic;
 using FluentAssertions;
 
-namespace GameOfLife.Domain
+namespace GameOfLife.Domain.NeighbourHood
 {
     public class NeighbourhoodFactoryTest
     {
@@ -12,11 +12,10 @@ namespace GameOfLife.Domain
         public NeighbourhoodFactoryTest()
         {
             neighbourHoodFactory = new NeighbourHoodFactory(new List<List<Cel>>{
-            new List<Cel>{Cel.Alive, Cel.Dead, Cel.Alive},
-            new List<Cel>{Cel.Dead, Cel.Alive, Cel.Dead},
-            new List<Cel>{Cel.Alive, Cel.Dead, Cel.Alive}
-        });
-
+                new List<Cel>{Cel.Alive, Cel.Dead, Cel.Alive},
+                new List<Cel>{Cel.Dead, Cel.Alive, Cel.Dead},
+                new List<Cel>{Cel.Alive, Cel.Dead, Cel.Alive}
+            });
         }
 
         [Fact]

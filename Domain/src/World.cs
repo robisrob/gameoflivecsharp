@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameOfLife.Domain.NeighbourHood;
 
 namespace GameOfLife.Domain
 {
@@ -19,7 +20,7 @@ namespace GameOfLife.Domain
                 var newRow = new List<Cel>();
                 for (int column = 0; column < _cells[row].Count; column++)
                 {
-                    newRow.Add(new CelDeterminator().DetermineNextStatus(_cells[row][column], new NeighbourHoodFactory(_cells).Create(new Location(row, column)).GetAmountOfLivingNeigbours()));
+                    newRow.Add(new NeighbourHoodFactory(_cells).Create(new Location(row, column)).DetermineNextStatus(_cells[row][column]));
                 }
                 newCells.Add(newRow);
             }
