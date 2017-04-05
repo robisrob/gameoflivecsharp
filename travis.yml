@@ -1,0 +1,5 @@
+language: csharp
+script:    
+  - cd Domain.Tests
+  - dotnet restore
+  - dotnet test
