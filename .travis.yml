@@ -6,5 +6,5 @@ dotnet: 1.0.1
 script:    
   - dotnet restore ./Domain.Tests/Domain.Tests.csproj
   - dotnet test ./Domain.Tests/Domain.Tests.csproj
-  - dotnet restore ./Application.Tests/Domain.Tests.csproj
-  - dotnet test ./Application.Tests/Domain.Tests.csproj
+  - dotnet restore ./Application.Tests/Application.Tests.csproj
+  - dotnet test ./Application.Tests/Application.Tests.csproj
