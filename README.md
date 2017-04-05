@@ -20,3 +20,6 @@ NET Core SDK 1.0.1
  - dotnet test ./Domain.Tests/Domain.Tests.csproj
  - dotnet restore ./Application.Tests/Application.Tests.csproj
  - dotnet test ./Application.Tests/Application.Tests.csproj
+ 
+## Explanation game
+https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
