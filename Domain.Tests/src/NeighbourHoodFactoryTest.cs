@@ -6,7 +6,6 @@ namespace GameOfLife.Domain.NeighbourHood
 {
     public class NeighbourhoodFactoryTest
     {
-
         private NeighbourHoodFactory neighbourHoodFactory;
 
         public NeighbourhoodFactoryTest()
