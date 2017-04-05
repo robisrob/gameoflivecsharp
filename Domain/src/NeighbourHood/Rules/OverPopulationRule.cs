@@ -4,7 +4,6 @@ namespace GameOfLife.Domain.NeighbourHood
     {
         private class OverPopulationRule : IRule
         {
-
             public bool Applies(Cel cel, int amountOfLivingNeigbors)
             {
                 return amountOfLivingNeigbors > 3;
