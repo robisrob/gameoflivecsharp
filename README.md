@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/robisrob/gameoflivecsharp.svg?branch=master)](https://travis-ci.org/robisrob/gameoflivecsharp)
+
 # Game of live
 
 ## Prerequisite
