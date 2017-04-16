@@ -3,7 +3,7 @@
 # Game of live
 
 ## Prerequisite
-NET Core SDK 1.0.1
+.NET Core SDK 1.0.1
 
 ## Run application
 - cd Application
