@@ -13,21 +13,21 @@ public class NeighBourHoodTest {
     [InlineData(1, Cel.Alive)]
 
     public void GivenLessThenTwoLivingNeigbors_WhenDetermineNewGeneration_ThenNewCelIsDead_DueToUnderPopulation(int livingNeighbors, Cel currentCel) {
-        new Neighbourhood(livingNeighbors).DetermineNextStatus(currentCel).Should().Be(Cel.Dead);
+        new Neighbourhood(livingNeighbors).DetermineNewGeneration(currentCel).Should().Be(Cel.Dead);
     }
 
     [Theory]
     [InlineData(Cel.Dead)]
     [InlineData(Cel.Alive)]
     public void GivenTwoLivingNeigbors_WhenDetermineNewGeneration_ThenNewCelIsTheSameAsOldCel_DueToSustenance(Cel currentCel) {
-        new Neighbourhood(2).DetermineNextStatus(currentCel).Should().Be(currentCel);
+        new Neighbourhood(2).DetermineNewGeneration(currentCel).Should().Be(currentCel);
     }
 
     [Theory]
     [InlineData(Cel.Dead)]
     [InlineData(Cel.Alive)]
     public void GivenThreeLivingNeigbors_WhenDetermineNewGeneration_ThenNewCelIsAlive_DueToReproduction(Cel currentCel) {
-        new Neighbourhood(3).DetermineNextStatus(currentCel).Should().Be(Cel.Alive);
+        new Neighbourhood(3).DetermineNewGeneration(currentCel).Should().Be(Cel.Alive);
     }
 
     [Theory]
@@ -42,17 +42,17 @@ public class NeighBourHoodTest {
     [InlineData(8, Cel.Dead)]
     [InlineData(8, Cel.Alive)]
     public void GivenMoreThenThreeLivingNeighbors_WhenDetermineNewGeneration_ThenNewCelDead_DueToOverpopulation(int amountOfLivingNeighbors, Cel currentCel) {
-        new Neighbourhood(amountOfLivingNeighbors).DetermineNextStatus(currentCel).Should().Be(Cel.Dead);
+        new Neighbourhood(amountOfLivingNeighbors).DetermineNewGeneration(currentCel).Should().Be(Cel.Dead);
     }
 
     [Fact]
-    public void GivenMoreThanEightLivingNeigbors_WhenDetermineNextStatus_ThenExceptionIsThrown() {
-        ((Action)(() => new Neighbourhood(9).DetermineNextStatus(Cel.Dead))).ShouldThrow<ArgumentException>().WithMessage("A cell has only 8 neighbors in total and therefore can't have 9 living neighbors");
+    public void GivenMoreThanEightLivingNeigbors_WhenDetermineNewGeneration_ThenExceptionIsThrown() {
+        ((Action)(() => new Neighbourhood(9).DetermineNewGeneration(Cel.Dead))).ShouldThrow<ArgumentException>().WithMessage("A cell has only 8 neighbors in total and therefore can't have 9 living neighbors");
     }
 
     [Fact]
-    public void GivenLessThan0tLivingNeigbors_WhenDetermineNextStatus_ThenExceptionIsThrown() {
-        ((Action)(() => new Neighbourhood(-1).DetermineNextStatus(Cel.Dead))).ShouldThrow<ArgumentException>().WithMessage("A cell can't have less than 0 living neighbors");
+    public void GivenLessThan0tLivingNeigbors_WhenDetermineNewGeneration_ThenExceptionIsThrown() {
+        ((Action)(() => new Neighbourhood(-1).DetermineNewGeneration(Cel.Dead))).ShouldThrow<ArgumentException>().WithMessage("A cell can't have less than 0 living neighbors");
     }
 }
 }

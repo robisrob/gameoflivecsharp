@@ -22,7 +22,7 @@ namespace GameOfLife.Domain.NeighbourHood
             return _amountOfLivingNeighbors;
         }
 
-        public Cel DetermineNextStatus(Cel cel)
+        public Cel DetermineNewGeneration(Cel cel)
         {
             return rules.Where(rule => rule.Applies(cel, _amountOfLivingNeighbors)).First().GetResult(cel);
         }

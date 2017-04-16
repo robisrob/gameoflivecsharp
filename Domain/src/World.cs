@@ -22,7 +22,7 @@ namespace GameOfLife.Domain
             return cellRow
             .Select((cell, columnNumber) => new NeighbourHoodFactory(_cells)
             .Create(new Location(rowNumber, columnNumber))
-            .DetermineNextStatus(cell))
+            .DetermineNewGeneration(cell))
             .ToList();
         }
 
