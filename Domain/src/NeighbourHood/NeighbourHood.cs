@@ -8,24 +8,18 @@ namespace GameOfLife.Domain.NeighbourHood
     {
         private readonly IEnumerable<IRule> rules;
 
-        private int _amountOfLivingNeighbors;
 
         public Neighbourhood(int amountOfLivingNeighbors)
         {
             ValidateAmountOfLivingNeigbors(amountOfLivingNeighbors);
-            _amountOfLivingNeighbors = amountOfLivingNeighbors;
-            rules = new List<IRule>{new OverPopulationRule(), new UnderPopulationRule(), new SustenanceRule(), new ReproductionRule()};
-        }
-        
-        public int GetAmountOfLivingNeigbours()
-        {
-            return _amountOfLivingNeighbors;
+            AmountOfLivingNeigbours = amountOfLivingNeighbors;
+            rules = new List<IRule> { new OverPopulationRule(), new UnderPopulationRule(), new SustenanceRule(), new ReproductionRule() };
         }
 
-        public Cel DetermineNewGeneration(Cel cel)
-        {
-            return rules.Where(rule => rule.Applies(cel, _amountOfLivingNeighbors)).First().GetResult(cel);
-        }
+        public int AmountOfLivingNeigbours {get; }
+
+        public Cel DetermineNewGeneration(Cel cel) 
+            => rules.Where(rule => rule.Applies(cel, AmountOfLivingNeigbours)).First().GetResult(cel);
 
         private void ValidateAmountOfLivingNeigbors(int amountOfLivingNeighbors)
         {
