@@ -6,32 +6,22 @@ namespace GameOfLife.Domain
 {
     public class World
     {
-        private List<List<Cel>> _cells;
-
         public World(List<List<Cel>> cells)
         {
-            _cells = cells;
+            Cells = cells;
         }
         public void Tick()
-        {
-            _cells = _cells.Select((cellRow, rowNumber) => DetermineNextGeneration(cellRow, rowNumber)).ToList();
-        }
+            => Cells = Cells.Select((cellRow, rowNumber) => DetermineNextGeneration(cellRow, rowNumber)).ToList();
 
         private List<Cel> DetermineNextGeneration(List<Cel> cellRow, int rowNumber)
         {
             return cellRow
-            .Select((cell, columnNumber) => new NeighbourHoodFactory(_cells)
+            .Select((cell, columnNumber) => new NeighbourHoodFactory(Cells)
             .Create(new Location(rowNumber, columnNumber))
             .DetermineNewGeneration(cell))
             .ToList();
         }
 
-        public List<List<Cel>> Cells
-        {
-            get
-            {
-                return _cells;
-            }
-        }
+        public List<List<Cel>> Cells {private set; get;}
     }
 }

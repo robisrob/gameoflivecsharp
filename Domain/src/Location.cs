@@ -2,23 +2,13 @@ namespace GameOfLife.Domain
 {
     internal class Location
     {
-        private readonly int rowNummer;
-        private readonly int columnNummer;
-
-        public Location(int rowNummer, int columnNummer)
+        public Location(int rowNumber, int columnNumber)
         {
-            this.rowNummer = rowNummer;
-            this.columnNummer = columnNummer;
+            RowNumber = rowNumber;
+            ColumnNumber = columnNumber;
         }
 
-        public int GetRowNummer()
-        {
-            return rowNummer;
-        }
-
-        public int GetColumnNummer()
-        {
-            return columnNummer;
-        }
+        public int RowNumber { get; }
+        public int ColumnNumber { get; }
     }
 }

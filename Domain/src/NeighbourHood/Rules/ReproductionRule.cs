@@ -5,15 +5,9 @@ namespace GameOfLife.Domain.NeighbourHood
         private class ReproductionRule : IRule
         {
 
-            public bool Applies(Cel cel, int amountOfLivingNeigbors)
-            {
-                return amountOfLivingNeigbors == 3;
-            }
+            public bool Applies(Cel cel, int amountOfLivingNeigbors) => amountOfLivingNeigbors == 3;
 
-            public Cel GetResult(Cel cel)
-            {
-                return Cel.Alive;
-            }
+            public Cel GetResult(Cel cel) => Cel.Alive;
         }
     }
 }

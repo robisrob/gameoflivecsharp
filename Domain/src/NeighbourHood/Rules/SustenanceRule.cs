@@ -5,15 +5,9 @@ namespace GameOfLife.Domain.NeighbourHood
         private class SustenanceRule : IRule
         {
 
-            public bool Applies(Cel cel, int amountOfLivingNeigbors)
-            {
-                return amountOfLivingNeigbors == 2;
-            }
+            public bool Applies(Cel cel, int amountOfLivingNeigbors) => amountOfLivingNeigbors == 2;
 
-            public Cel GetResult(Cel cel)
-            {
-                return cel;
-            }
+            public Cel GetResult(Cel cel) =>  cel;
         }
     }
 }
