@@ -19,7 +19,7 @@ namespace GameOfLife.Domain.NeighbourHood
         public int AmountOfLivingNeigbours {get; }
 
         public Cel DetermineNewGeneration(Cel cel) 
-            => rules.Where(rule => rule.Applies(cel, AmountOfLivingNeigbours)).First().GetResult(cel);
+            => rules.First(rule => rule.Applies(cel, AmountOfLivingNeigbours)).GetResult(cel);
 
         private void ValidateAmountOfLivingNeigbors(int amountOfLivingNeighbors)
         {

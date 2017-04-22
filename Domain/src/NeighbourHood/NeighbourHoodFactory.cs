@@ -5,86 +5,64 @@ namespace GameOfLife.Domain.NeighbourHood
 {
     internal class NeighbourHoodFactory
     {
-        private readonly List<List<Cel>> currentWorld;
+        private readonly List<List<Cel>> _currentWorld;
 
         public NeighbourHoodFactory(List<List<Cel>> currentWorld)
         {
-            this.currentWorld = currentWorld;
+            _currentWorld = currentWorld;
         }
 
         public Neighbourhood Create(Location location)
-            => new Neighbourhood((int)GetNeighbours(location).Where(neighbor => neighbor == Cel.Alive).Count());
+        {
+            return new Neighbourhood(GetNeighbours(location).Count(neighbor => neighbor == Cel.Alive));
 
-        private List<Cel> GetNeighbours(Location location) 
-            => new List<List<Cel>> { GetDownStairNeighbours(location), GetFellowNeighbors(location), GetUpperNeighbors(location) }.SelectMany(list => list).ToList();
+            IEnumerable<Cel> GetNeighbours(Location locationA)
+            {
+                return FindLocationNeighbors(locationA).Select(GetCel);
 
-        private List<Cel> GetDownStairNeighbours(Location location) 
-            => new List<Cel> { GetFirstDownstairNeighbor(location), GetSecondDownstairNeighbor(location), GetThirdDownstairNeighbor(location) };
+                Cel GetCel(Location locationNeighbor)
+                {
+                    return DoesCelExist(locationNeighbor) ? _currentWorld[locationNeighbor.RowNumber][locationNeighbor.ColumnNumber] : Cel.Dead;
 
-        private List<Cel> GetFellowNeighbors(Location location)
-            => new List<Cel> { GetFirstFellowNeighbor(location), GetSecondFellowNeigbor(location) };
+                    bool DoesCelExist(Location locationB)
+                    {
+                        return DoesRowExist(locationB) && DoesColumnExist(locationB);
 
-        private List<Cel> GetUpperNeighbors(Location location)
-            => new List<Cel> { GetFirstUpperNeighbor(location), GetSecondUpperNeighbor(location), GetThirdUpperNeighbor(location) };
+                        bool DoesColumnExist(Location locationC) => locationC.ColumnNumber >= 0 && locationC.ColumnNumber < _currentWorld.Count;
 
-        private Cel GetFirstUpperNeighbor(Location location)
-            => GetCel(GetLocationFirstUpperNeighbor(location));
+                        bool DoesRowExist(Location locationC) => locationC.RowNumber >= 0 && locationC.RowNumber < _currentWorld[0].Count;
+                    }
+                }
 
-        private Cel GetSecondUpperNeighbor(Location location)
-            => GetCel(GetLocationSecondUpperNeighbor(location));
+                List<Location> FindLocationNeighbors(Location locationD)
+                {
+                    return new List<Location> {
+                        GetLocationFirstUpperNeighbor(locationD),
+                        GetLocationSecondUpperNeighbor(locationD),
+                        GetLocationThirdUpperNeighbor(locationD),
+                        GetLocationFirstFellowNeighbor(locationD),
+                        GetLocationSecondFellowNeighbor(locationD),
+                        GetLocationFirstDownstairNeighbor(locationD),
+                        GetLocationSecondDownstairNeighbor(locationD),
+                        GetLocationThirdDownstairNeighbor(locationD)};
 
-        private Cel GetThirdUpperNeighbor(Location location)
-         => GetCel(GetLocationThirdUpperNeighbor(location));
+                    Location GetLocationFirstUpperNeighbor(Location d) => new Location(location.RowNumber - 1, location.ColumnNumber - 1);
 
-        private Cel GetFirstFellowNeighbor(Location location)
-         => GetCel(GetLocationFirstFellowNeighbor(location));
+                    Location GetLocationSecondUpperNeighbor(Location d) => new Location(location.RowNumber - 1, location.ColumnNumber);
 
-        private Cel GetSecondFellowNeigbor(Location location)
-            =>  GetCel(GetLocationSecondFellowNeighbor(location));
+                    Location GetLocationThirdUpperNeighbor(Location d) => new Location(location.RowNumber - 1, location.ColumnNumber + 1);
 
-        private Cel GetFirstDownstairNeighbor(Location location)
-            => GetCel(GetLocationFirstDownstairNeighbor(location));
+                    Location GetLocationFirstFellowNeighbor(Location d) => new Location(location.RowNumber, location.ColumnNumber - 1);
 
-        private Cel GetSecondDownstairNeighbor(Location location)
-            => GetCel(GetLocationSecondDownstairNeighbor(location));
+                    Location GetLocationSecondFellowNeighbor(Location d) => new Location(location.RowNumber, location.ColumnNumber + 1);
 
-        private Cel GetThirdDownstairNeighbor(Location location)
-            => GetCel(GetLocationThirdDownstairNeighbor(location));
-        
-        private Cel GetCel(Location location)
-            => DoesCelExist(location) ? currentWorld[(location.RowNumber)][(location.ColumnNumber)] : Cel.Dead;
+                    Location GetLocationFirstDownstairNeighbor(Location d) => new Location(location.RowNumber + 1, location.ColumnNumber - 1);
 
-        private bool DoesCelExist(Location location)
-            =>  DoesRowExist(location) && DoesColumnExist(location);
+                    Location GetLocationSecondDownstairNeighbor(Location d) => new Location(location.RowNumber + 1, location.ColumnNumber);
 
-        private bool DoesColumnExist(Location location)
-            => location.ColumnNumber >= 0 && location.ColumnNumber < currentWorld.Count();
-
-        private bool DoesRowExist(Location location)
-            =>  location.RowNumber >= 0 && location.RowNumber < currentWorld[0].Count();
-
-        private Location GetLocationFirstUpperNeighbor(Location location)
-            => new Location(location.RowNumber - 1, location.ColumnNumber - 1);
-
-        private Location GetLocationSecondUpperNeighbor(Location location)
-            => new Location(location.RowNumber - 1, location.ColumnNumber);
-
-        private Location GetLocationThirdUpperNeighbor(Location location)
-            => new Location(location.RowNumber - 1, location.ColumnNumber + 1);
-
-        private Location GetLocationFirstFellowNeighbor(Location location)
-            => new Location(location.RowNumber, location.ColumnNumber - 1);
-
-        private Location GetLocationSecondFellowNeighbor(Location location)
-            => new Location(location.RowNumber, location.ColumnNumber + 1);
-
-        private Location GetLocationFirstDownstairNeighbor(Location location)
-            => new Location(location.RowNumber + 1, location.ColumnNumber - 1);
-
-        private Location GetLocationSecondDownstairNeighbor(Location location)
-            => new Location(location.RowNumber + 1, location.ColumnNumber);
-
-        private Location GetLocationThirdDownstairNeighbor(Location location)
-            => new Location(location.RowNumber + 1, location.ColumnNumber + 1);
+                    Location GetLocationThirdDownstairNeighbor(Location d) => new Location(location.RowNumber + 1, location.ColumnNumber + 1);
+                }
+            }
+        }
     }
 }

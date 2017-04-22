@@ -11,7 +11,7 @@ namespace GameOfLife.Domain
             Cells = cells;
         }
         public void Tick()
-            => Cells = Cells.Select((cellRow, rowNumber) => DetermineNextGeneration(cellRow, rowNumber)).ToList();
+            => Cells = Cells.Select(DetermineNextGeneration).ToList();
 
         private List<Cel> DetermineNextGeneration(List<Cel> cellRow, int rowNumber)
         {
