@@ -16,8 +16,8 @@ namespace GameOfLife.Domain
         private List<Cel> DetermineNextGeneration(List<Cel> cellRow, int rowNumber)
         {
             return cellRow
-            .Select((cell, columnNumber) => new NeighbourHoodFactory(Cells)
-            .Create(new Location(rowNumber, columnNumber))
+            .Select((cell, columnNumber) => new NeighbourHoodFactory(Cells, new Location(rowNumber, columnNumber))
+            .Create()
             .DetermineNewGeneration(cell))
             .ToList();
         }

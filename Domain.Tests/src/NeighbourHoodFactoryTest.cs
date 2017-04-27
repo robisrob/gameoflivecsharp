@@ -6,51 +6,29 @@ namespace GameOfLife.Domain.NeighbourHood
 {
     public class NeighbourhoodFactoryTest
     {
-        private NeighbourHoodFactory neighbourHoodFactory;
 
-        public NeighbourhoodFactoryTest()
+        [Theory]
+        [InlineData(0, 0, 1)]
+        [InlineData(0, 1, 3)]
+        [InlineData(0, 2, 1)]
+        [InlineData(1, 0, 3)]
+        [InlineData(1, 1, 4)]
+        [InlineData(1, 2, 3)]
+        [InlineData(2, 0, 1)]
+        [InlineData(2, 1, 3)]
+        [InlineData(2, 2, 1)]
+        public void GivenCertainLocation_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated(int rowNumber, int columnNumber, int amountOfLivingNeighbors)
         {
-            neighbourHoodFactory = new NeighbourHoodFactory(new List<List<Cel>>{
+            NeighbourHoodFactory neighbourHoodFactory = new NeighbourHoodFactory(new List<List<Cel>>{
                 new List<Cel>{Cel.Alive, Cel.Dead, Cel.Alive},
                 new List<Cel>{Cel.Dead, Cel.Alive, Cel.Dead},
                 new List<Cel>{Cel.Alive, Cel.Dead, Cel.Alive}
-            });
+            }, new Location(rowNumber, columnNumber));
+
+            var neighbourhood = neighbourHoodFactory.Create();
+
+
+            neighbourhood.AmountOfLivingNeigbours.Should().Be(amountOfLivingNeighbors);
         }
-
-        [Fact]
-        public void GivenLocation00_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(0, 0)).AmountOfLivingNeigbours.Should().Be(1);
-
-        [Fact]
-        public void GivenLocation01_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(0, 1)).AmountOfLivingNeigbours.Should().Be(3);
-
-        [Fact]
-        public void GivenLocation02_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(0, 2)).AmountOfLivingNeigbours.Should().Be(1);
-
-        [Fact]
-        public void GivenLocation10_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(1, 0)).AmountOfLivingNeigbours.Should().Be(3);
-
-        [Fact]
-        public void GivenLocation11_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(1, 1)).AmountOfLivingNeigbours.Should().Be(4);
-
-        [Fact]
-        public void GivenLocation12_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(1, 2)).AmountOfLivingNeigbours.Should().Be(3);
-
-        [Fact]
-        public void GivenLocation20_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(2, 0)).AmountOfLivingNeigbours.Should().Be(1);
-
-        [Fact]
-        public void GivenLocation21_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(2, 1)).AmountOfLivingNeigbours.Should().Be(3);
-
-        [Fact]
-        public void GivenLocation22_whenCreatingNeighbourhood_NeigbourhoodWithCorrectAmountOfLivingNeigborsIsCreated()
-            => neighbourHoodFactory.Create(new Location(2, 2)).AmountOfLivingNeigbours.Should().Be(1);
     }
 }
