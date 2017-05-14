@@ -24,9 +24,9 @@ namespace GameOfLife.Domain.NeighbourHood
 
                 Cel GetCel(Location locationNeighbor)
                 {
-                    return DoesCelExist() ? _currentWorld[locationNeighbor.RowNumber][locationNeighbor.ColumnNumber] : Cel.Dead;
+                    return DoesLocationNeighborExist() ? _currentWorld[locationNeighbor.RowNumber][locationNeighbor.ColumnNumber] : Cel.Dead;
 
-                    bool DoesCelExist()
+                    bool DoesLocationNeighborExist()
                     {
                         return DoesRowExist() && DoesColumnExist();
 
