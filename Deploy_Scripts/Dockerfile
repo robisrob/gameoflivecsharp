@@ -3,5 +3,8 @@ FROM microsoft/aspnetcore:1.1.2
 MAINTAINER Rob Swartenbroekx "rob.swartenbroekx@gmail.com"
 WORKDIR /app
 COPY publish .
+RUN useradd app
+USER app
+EXPOSE 5001
 ENTRYPOINT ["dotnet", "Application.dll"]
 

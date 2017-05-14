@@ -13,6 +13,7 @@ namespace Application
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseUrls("http://+:5001")
                 .Build();
 
             host.Run();
