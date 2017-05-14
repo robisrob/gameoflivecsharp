@@ -11,7 +11,7 @@
 - dotnet run
 ## Send request
 - POST 
- - url: http://localhost:5000/api/gameoflife
+ - url: http://localhost:5000/api/gameoflife (or: https://gol-robisrob.1d35.starter-us-east-1.openshiftapps.com/api/gameoflife)
  - headers: Content-Type: application/json
  - example body: [[false, false, true], [false, true, true], [false, false, false]]
 
