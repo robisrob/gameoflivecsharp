@@ -1,4 +1,5 @@
 cd $HOME
+ls
 cd Application
 dotnet publish -c Release -o ./docker_workdir/app 
 cp ../buildscripts/Dockerfile ./docker_workdir
