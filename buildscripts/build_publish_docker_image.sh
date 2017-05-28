@@ -1,6 +1,4 @@
-cd $HOME
-ls
-cd Application
+cd $HOME/build/robisrob/gameoflivecsharp/Application
 dotnet publish -c Release -o ./docker_workdir/app 
 cp ../buildscripts/Dockerfile ./docker_workdir
 cd docker_workdir
