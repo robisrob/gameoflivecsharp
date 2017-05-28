@@ -12,7 +12,7 @@
 
 ## Run application with docker
 - docker run -p 5001:5001 robisrob/gol
-(after every successful build, a new image is pushed to https://hub.docker.com/r/robisrob/gol/)
+    - (after every successful build, a new image is pushed to https://hub.docker.com/r/robisrob/gol/)
 
 ## Send request
 - POST 
