@@ -5,10 +5,15 @@
 ## Prerequisite
 .NET Core SDK 1.0.1
 
-## Run application
+## Run application without docker
 - cd Application
 - dotnet restore
 - dotnet run
+
+## Run application with docker
+- docker run -p 5001:5001 robisrob/gol
+(after every successful build, a new image is pushed to https://hub.docker.com/r/robisrob/gol/)
+
 ## Send request
 - POST 
  - url: http://localhost:5001/api/gameoflife (or: https://gol-robisrob.1d35.starter-us-east-1.openshiftapps.com/api/gameoflife)
