@@ -1,6 +1,5 @@
 cd $HOME
-cd Application
-dotnet publish -c Release -o ./docker_workdir/app 
+dotnet publish -c Release -o ./docker_workdir/app ./Application.csproj
 cp buildscripts/Dockerfile Application/docker_workdir
 cd Application/docker_workdir
 docker build -t robisrob/gol .
